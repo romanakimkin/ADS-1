@@ -2,21 +2,26 @@
 #include "alg.h"
 
 int cbinsearch(int *arr, int size, int value) {
-int left = *arr;
-int right = size;
-int mid = 0;
-while(left <= right){
-    mid = (left+right)/2;
-    if (value < arr[mid])
-        right = mid - 1;
-    else
-        if (value > arr[mid])
-            left = mid + 1;
-    else
-        if (value == arr[mid])
-            return value;
-    else if (left > right)
-        continue;
+int left = 0,
+int right = size - 1,
+int c = 0;
+while (left < right) {
+int m = (left + right) / 2;
+if (arr[m] < value)
+left = m + 1;
+else
+right = m;
 }
-  return 0;
+
+if (arr[left] == value) {
+while (arr[left] == value) {
+c++;
+left++;
+}
+}
+
+if (c)
+return c;
+else
+return 0;
 }
